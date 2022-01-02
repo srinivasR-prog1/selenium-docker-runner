@@ -1,0 +1,31 @@
+version: "3"
+services:
+  selenium-hub:
+    image: selenium/hub:latest
+    
+  chrome:
+    image: selenium/node-chrome:latest 
+    shm_size: 2gb 
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub       
+  firefox:
+    image: selenium/node-firefox:latest
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub      
+    
+  search-module:
+    image: srinivas111/selenium-docker    
+    depends_on:
+      - chrome
+      - firefox
+    environment:
+      - HUB_HOST=selenium-hub
+      - BROWSER=chrome       
+      - MODULE=testng.xml
+    volumes:
+      - ./output:/Users/tsrin/workspace/GoogleAutomation5  
