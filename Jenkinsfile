@@ -6,7 +6,7 @@ pipeline{
                
                  	steps{
                    
-                    		 bat "docker pull srinivas111/selenium-docker"
+                    		 bat "docker pull srinivas111/selenium-docker:lts"
                   
                    
                    }
